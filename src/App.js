@@ -30,7 +30,9 @@ const App = () => {
     try {
       if(safeUsername)
       {
+        setMessage("Changing Password, please wait...");
         const response = await axios.post("https://token-based-auth.herokuapp.com/users/change", {newPassword, username: safeUsername});
+        setMessage("PASSWORD COULD NOT BE CHANGED");
         console.log(response.data);
       }
       else {
@@ -47,6 +49,7 @@ const App = () => {
     try {
       if(unsafeUsername)
       {
+        setMessage("Changing Password, please wait...");
         const response = await axios.post("https://token-based-unsafe.herokuapp.com/users/change", {newPassword, username: unsafeUsername});
         console.log(response.data);
         if(response.data.message === "Error") {
@@ -79,7 +82,7 @@ const App = () => {
     <button onClick = {sendToSafe} className = "btn btn-dark mt-5"> Change Password on Safe Site </button>
     <br />
     <button onClick = {() => sendToUnsafe()} className = "btn btn-dark mt-5"> Change Password on Unsafe Site </button>
-    <div className="mt-5"> {message} </div>
+    <div className="mt-5"> <b> {message} </b> </div>
     <iframe src="https://token-based-auth.herokuapp.com/" style={{display: "none"}}></iframe>
     <iframe src="https://token-based-unsafe.herokuapp.com/" style={{display: "none"}}></iframe>
     </div>
