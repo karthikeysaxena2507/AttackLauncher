@@ -6,11 +6,13 @@ axios.defaults.withCredentials = true;
 
 const App = () => {
 
+  // CREATING OUR STATE VARIABLES
   const [newPassword, setNewPassword] = useState("");
   const [safeUsername, setSafeUsername] = useState("");
   const [unsafeUsername, setUnsafeUsername] = useState("");
   const [message, setMessage] = useState("");
 
+  // USE-EFFECT REACT HOOK TO CONNECT WITH HIDDEN WEBISTES ON IFRAME
   useEffect(() => {
     const fetch = async() => {
       try { 
@@ -26,6 +28,9 @@ const App = () => {
     fetch();
   },[]);
 
+  /**
+   * FUNCTION TO SEND AN API REQUEST TO SAFE WEBSITE
+   */
   const sendToSafe = async() => {
     try {
       if(safeUsername)
@@ -45,6 +50,9 @@ const App = () => {
     }
   }
 
+  /**
+   * FUNCTION TO SEND AN API REQUEST TO SAFE WEBSITE
+   */
   const sendToUnsafe = async() => {
     try {
       if(unsafeUsername)
@@ -68,6 +76,7 @@ const App = () => {
     }
   }
 
+  // RENDERING OUR DATA OF THE PAGE IN JSX
   return (
     <div className = "text-center up">
     <h1> EVIL WEBSITE </h1>
